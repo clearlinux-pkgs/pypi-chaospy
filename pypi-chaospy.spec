@@ -4,7 +4,7 @@
 #
 Name     : pypi-chaospy
 Version  : 4.3.8
-Release  : 13
+Release  : 14
 URL      : https://files.pythonhosted.org/packages/14/b2/046b5355de4302bfb69ae48ec3fd3975a7bbb46188c64f984aacb346af65/chaospy-4.3.8.tar.gz
 Source0  : https://files.pythonhosted.org/packages/14/b2/046b5355de4302bfb69ae48ec3fd3975a7bbb46188c64f984aacb346af65/chaospy-4.3.8.tar.gz
 Summary  : "Numerical tool for perfroming uncertainty quantification"
