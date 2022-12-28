@@ -4,7 +4,7 @@
 #
 Name     : pypi-chaospy
 Version  : 4.3.9.post1
-Release  : 18
+Release  : 19
 URL      : https://files.pythonhosted.org/packages/99/cf/03a0bb010b2edc2f310b24f5e6b567d1972af36c3552d403a899e0f28b90/chaospy-4.3.9.post1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/99/cf/03a0bb010b2edc2f310b24f5e6b567d1972af36c3552d403a899e0f28b90/chaospy-4.3.9.post1.tar.gz
 Summary  : "Numerical tool for performing uncertainty quantification"
@@ -22,6 +22,9 @@ BuildRequires : pypi(scipy)
 BuildRequires : pypi(setuptools)
 BuildRequires : pypi(setuptools_scm)
 BuildRequires : pypi(setuptools_scm_git_archive)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 .. image:: https://github.com/jonathf/chaospy/raw/master/docs/_static/chaospy_logo.svg
@@ -73,15 +76,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1668446639
+export SOURCE_DATE_EPOCH=1672262353
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
