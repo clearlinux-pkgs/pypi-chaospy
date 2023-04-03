@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-chaospy
-Version  : 4.3.11
-Release  : 22
-URL      : https://files.pythonhosted.org/packages/56/8d/861f41d2fc3c4afdf6991481063949dfa7538ff5dfc3b36dcbaaf5240725/chaospy-4.3.11.tar.gz
-Source0  : https://files.pythonhosted.org/packages/56/8d/861f41d2fc3c4afdf6991481063949dfa7538ff5dfc3b36dcbaaf5240725/chaospy-4.3.11.tar.gz
+Version  : 4.3.12
+Release  : 23
+URL      : https://files.pythonhosted.org/packages/7f/a9/c3698166ed4b6ace6aeba9c5787d76c719e1aefa08fe968862d82d16d770/chaospy-4.3.12.tar.gz
+Source0  : https://files.pythonhosted.org/packages/7f/a9/c3698166ed4b6ace6aeba9c5787d76c719e1aefa08fe968862d82d16d770/chaospy-4.3.12.tar.gz
 Summary  : Numerical tool for performing uncertainty quantification
 Group    : Development/Tools
 License  : MIT
@@ -15,10 +15,6 @@ Requires: pypi-chaospy-license = %{version}-%{release}
 Requires: pypi-chaospy-python = %{version}-%{release}
 Requires: pypi-chaospy-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(numpoly)
-BuildRequires : pypi(numpy)
-BuildRequires : pypi(scipy)
-BuildRequires : pypi(setuptools)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -61,10 +57,10 @@ python3 components for the pypi-chaospy package.
 
 
 %prep
-%setup -q -n chaospy-4.3.11
-cd %{_builddir}/chaospy-4.3.11
+%setup -q -n chaospy-4.3.12
+cd %{_builddir}/chaospy-4.3.12
 pushd ..
-cp -a chaospy-4.3.11 buildavx2
+cp -a chaospy-4.3.12 buildavx2
 popd
 
 %build
@@ -72,7 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679671756
+export SOURCE_DATE_EPOCH=1680550837
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
