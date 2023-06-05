@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-chaospy
-Version  : 4.3.12
-Release  : 23
-URL      : https://files.pythonhosted.org/packages/7f/a9/c3698166ed4b6ace6aeba9c5787d76c719e1aefa08fe968862d82d16d770/chaospy-4.3.12.tar.gz
-Source0  : https://files.pythonhosted.org/packages/7f/a9/c3698166ed4b6ace6aeba9c5787d76c719e1aefa08fe968862d82d16d770/chaospy-4.3.12.tar.gz
+Version  : 4.3.13
+Release  : 24
+URL      : https://files.pythonhosted.org/packages/1c/84/e2ed2ad3d1098368b89083663f0ecdac7fe397803fd33820926c66264ade/chaospy-4.3.13.tar.gz
+Source0  : https://files.pythonhosted.org/packages/1c/84/e2ed2ad3d1098368b89083663f0ecdac7fe397803fd33820926c66264ade/chaospy-4.3.13.tar.gz
 Summary  : Numerical tool for performing uncertainty quantification
 Group    : Development/Tools
 License  : MIT
@@ -15,6 +15,7 @@ Requires: pypi-chaospy-license = %{version}-%{release}
 Requires: pypi-chaospy-python = %{version}-%{release}
 Requires: pypi-chaospy-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : pypi(setuptools)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -47,6 +48,7 @@ Summary: python3 components for the pypi-chaospy package.
 Group: Default
 Requires: python3-core
 Provides: pypi(chaospy)
+Requires: pypi(importlib_metadata)
 Requires: pypi(numpoly)
 Requires: pypi(numpy)
 Requires: pypi(scipy)
@@ -57,10 +59,10 @@ python3 components for the pypi-chaospy package.
 
 
 %prep
-%setup -q -n chaospy-4.3.12
-cd %{_builddir}/chaospy-4.3.12
+%setup -q -n chaospy-4.3.13
+cd %{_builddir}/chaospy-4.3.13
 pushd ..
-cp -a chaospy-4.3.12 buildavx2
+cp -a chaospy-4.3.13 buildavx2
 popd
 
 %build
@@ -68,15 +70,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680550837
+export SOURCE_DATE_EPOCH=1685978352
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
