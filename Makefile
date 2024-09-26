@@ -1,5 +1,5 @@
 PKG_NAME := pypi-chaospy
-URL = https://files.pythonhosted.org/packages/3b/77/f5ed6b81eefc48312fe726c4aaec868345aa13306f4539e1db670330175f/chaospy-4.3.16.tar.gz
+URL = https://files.pythonhosted.org/packages/45/1a/fefe175584a9f27064229656484868cca05374d704a39f7ed3656c3947ef/chaospy-4.3.17.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
